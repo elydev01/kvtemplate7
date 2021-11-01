@@ -1,0 +1,141 @@
+
+<Item@MDCard>:
+    icon: ""
+    title: "-"
+    radius: [dp(10)]
+    size_hint_y: None
+    height: self.width
+    orientation: 'vertical'
+    elevation: 6
+    md_bg_color: RC()
+    md_fg_color: RC()
+    spacing: dp(5)
+    ripple_behavior: True
+    on_release: app.manager.push('scan_screen')
+    MDBoxLayout:
+    MDLabel:
+        text: "[size=30][font=Icons]{0}[/font][/size]".format(I.get(root.icon, " "))
+        markup: True
+        color: root.md_fg_color
+        halign: 'center'
+        adaptive_height: True
+    MDLabel:
+        text: root.title
+        halign: 'center'
+        color: root.md_fg_color
+        font_size: sp(14)
+        font_name: 'assets/NexaDemo-Light.ttf'
+        adaptive_height: True
+    MDBoxLayout:
+
+
+
+<MDButton>:
+    radius: [dp(10)]
+    size_hint: .7, None
+    height: dp(45)
+    color: 1,1,1,1
+    ripple_behavior: True
+    md_bg_color: app.theme_cls.primary_dark
+    Label:
+        text: root.text
+        halign: "center"
+        padding: dp(20), dp(10)
+        color: root.color
+        bold: root.bold
+
+
+<HomeMainScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: 1,1,1,1
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: dp(15), dp(40)
+            adaptive_height: True
+            canvas.before:
+                Color:
+                    rgb: app.theme_cls.primary_color
+                Rectangle:
+                    size: self.width, self.height + dp(50)
+                    pos: self.x, self.y - dp(50)
+                Color:
+                    rgb: app.theme_cls.primary_dark
+                Ellipse:
+                    size: (self.width // 3), (self.width // 3)
+                    pos: self.center_x - (self.width // 6), self.top - (self.width // 6)
+                Ellipse:
+                    size: dp(50), dp(50)
+                    pos: self.x + dp(20), self.y
+                Ellipse:
+                    size: self.width / 1.5, self.width / 1.5
+                    pos: self.center_x, self.y - (self.height)
+            MDLabel:
+                bold: True
+                color: 1,1,1
+                text: "ScanQR"
+                font_size: sp(24)
+                adaptive_height: True
+                font_name: 'assets/NexaDemo-Bold.ttf'
+            MDLabel:
+                color: 1,1,1
+                adaptive_height: True
+                text: "QR-BAR CODE SCANNER"
+                font_name: 'assets/NexaDemo-Light.ttf'
+        MDBoxLayout:
+            orientation: 'vertical'
+            md_bg_color: 1,1,1,1
+            radius: [dp(30), dp(30),0,0]
+            ScrollView:
+                always_overscroll: False
+                padding: dp(10), dp(10)
+                MDBoxLayout:
+                    adaptive_height: True
+                    orientation: 'vertical'
+                    MDGridLayout:
+                        adaptive_height: True
+                        cols: 3
+                        padding: dp(35), dp(30)
+                        spacing: dp(20)
+                        Item:
+                            icon: "scan-helper"
+                            title: "Scan"
+                            md_bg_color: C("#FFEBEE")
+                            md_fg_color: C("#E57373")
+                        Item:
+                            icon: "card-plus-outline"
+                            title: "Create"
+                            md_bg_color: C("#E3F2FD")
+                            md_fg_color: C("#64B5F6")
+                        Item:
+                            icon: "history"
+                            title: "History"
+                            md_bg_color: C("#E8F5E9")
+                            md_fg_color: C("#81C784")
+                        Item:
+                            icon: "cog"
+                            title: "Settings"
+                            md_bg_color: C("#F5F5F5")
+                            md_fg_color: C("#BDBDBD")
+                        Item:
+                            icon: "share"
+                            title: "Share"
+                            md_bg_color: C("#FFF8E1")
+                            md_fg_color: C("#FFD54F")
+                        Item:
+                            icon: "dots-triangle"
+                            title: "More"
+                            md_bg_color: C("#EDE7F6")
+                            md_fg_color: C("#9575CD")
+                    AsyncImage:
+                        source: "assets/image.png"
+                        size_hint: 1, None
+                        height: self.width * .5
+                        allow_stretch: False
+                    MDBoxLayout:
+                        adaptive_height: True
+                        orientation: 'vertical'
+                        padding: 0, dp(40)
+                        MDButton:
+                            text: "LEARN MORE"
+                            pos_hint: {'center_x': .5}

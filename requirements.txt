@@ -1,0 +1,9 @@
+kivy
+
+kivymd
+
+opencv-python
+
+zbarcam
+
+playsound

@@ -1,0 +1,61 @@
+#:import ZBarCam kivy_garden.zbarcam.ZBarCam
+
+
+<ScanMainScreen>:
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+        canvas.before:
+            Color:
+                rgba: app.theme_cls.primary_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        MDCard:
+            orientation: 'vertical'
+            size_hint: .9, None
+            md_bg_color: 1,1,1,1
+            height: root.height * .9
+            radius: [dp(10)]
+            padding: dp(10), dp(20)
+            FloatLayout:
+                MDBoxLayout:
+                    padding: 0, dp(15)
+                    adaptive_height: True
+                    orientation: 'vertical'
+                    md_bg_color: .95,.95,.95,1
+                    pos_hint: {'center_x': .5, "top": 1}
+                    radius: [dp(10)]
+                    MDLabel:
+                        text: "Scan QR Code"
+                        bold: True
+                        font_size: sp(19)
+                        halign: "center"
+                        adaptive_height: True
+                    MDBoxLayout:
+                        size_hint_y: None
+                        height: dp(40)
+            FloatLayout:
+                MDBoxLayout:
+                    id: qr_reader
+                    size_hint: None, None
+                    size: dp(250), dp(200)
+                    radius: dp(10)
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    ZBarCam:
+                        id: zbarcam
+                        on_symbols: if self.symbols: root.read_qr(self.symbols[0].data)
+                        canvas.after:
+                            Color:
+                                rgb: app.theme_cls.primary_color
+                            Line:
+                                rounded_rectangle: self.pos + self.size + [dp(10)]
+            FloatLayout:
+                MDButton:
+                    text: "CLOSE"
+                    size_hint: .5, None
+                    height: dp(40)
+                    bold: True
+                    radius: [dp(22)]
+                    pos_hint: {'center_x': .5, 'y': 0}
+                    on_release: app.manager.pop()
